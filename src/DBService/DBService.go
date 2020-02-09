@@ -6,7 +6,6 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"password"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -22,7 +21,7 @@ type Order struct {
 func DbConn() (db *sql.DB) {
 	dbDriver := environment.DBdriver
 	dbUser := environment.DBuser
-	dbPass := password.DBpassword
+	dbPass := environment.DBpassword
 	dbName := environment.DBname
 	db, err := sql.Open(dbDriver, dbUser+":"+dbPass+"@/"+dbName)
 	if err != nil {
