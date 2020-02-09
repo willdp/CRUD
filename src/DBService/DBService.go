@@ -2,10 +2,10 @@ package DBService
 
 import (
 	"database/sql"
+	"environment"
 	"html/template"
 	"log"
 	"net/http"
-	"password"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -19,10 +19,10 @@ type Order struct {
 }
 
 func DbConn() (db *sql.DB) {
-	dbDriver := "mysql"
-	dbUser := "root"
-	dbPass := password.DBpassword
-	dbName := "orders"
+	dbDriver := environment.DBdriver
+	dbUser := environment.DBuser
+	dbPass := environment.DBpassword
+	dbName := environment.DBname
 	db, err := sql.Open(dbDriver, dbUser+":"+dbPass+"@/"+dbName)
 	if err != nil {
 		panic(err)
