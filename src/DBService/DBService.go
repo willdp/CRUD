@@ -2,6 +2,7 @@ package DBService
 
 import (
 	"database/sql"
+	"environment"
 	"html/template"
 	"log"
 	"net/http"
@@ -19,10 +20,10 @@ type Order struct {
 }
 
 func DbConn() (db *sql.DB) {
-	dbDriver := "mysql"
-	dbUser := "root"
+	dbDriver := environment.DBdriver
+	dbUser := environment.DBuser
 	dbPass := password.DBpassword
-	dbName := "orders"
+	dbName := environment.DBname
 	db, err := sql.Open(dbDriver, dbUser+":"+dbPass+"@/"+dbName)
 	if err != nil {
 		panic(err)
