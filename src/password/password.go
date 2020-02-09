@@ -1,3 +1,0 @@
-package password
-
-var DBpassword = ""
